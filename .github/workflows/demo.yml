@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - main
-outputs:
-  script-file: ${{ steps.publish.outputs.script-file }}
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -20,6 +18,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Get code
         uses: actions/checkout@v3
